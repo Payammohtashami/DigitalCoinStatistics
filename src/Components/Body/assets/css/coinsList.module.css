@@ -1,0 +1,55 @@
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.secendContainer {
+    width: 95%;
+    height: 100%;
+}
+.body {
+    margin-top: 10px;
+    width: 95%;
+    height: 100%;
+    background-color: white;
+    border-radius: 25px;
+}
+.title {
+    margin-left: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0074B7;
+}
+.header {
+    border-radius: 20px;
+    margin-top: 10px ;
+    width: 98%;
+    height: 45px;
+    background-color: #0074b720;
+}
+.tableCon {
+    text-align: left;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.table th {
+    font-size: 0.9rem;
+    padding: 0;
+    height: 45px;
+}
+.table th:nth-child(1){
+    padding-left: 20px;
+    width: 140px;
+}
+.table th:nth-child(2){
+    width: 120px;
+}
+.table th:nth-child(3){
+    width: 200px;
+}
+.table th:nth-child(4){
+    width: 180px;
+}
+.table th:nth-child(5){
+    width: 180px;
+}
