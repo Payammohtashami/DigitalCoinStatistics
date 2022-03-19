@@ -3,6 +3,7 @@ import styles from './Detial.module.css';
 import { Link } from 'react-router-dom';
 import {persentCalc} from '../../helper/function';
 import ReactTooltip from 'react-tooltip';
+import Chart from './Chart'
 
 const Detial = ({name,symbol,image,rank,price,high,low,change24,persentChange,lastUpdate,weekChange,marketCap,marketCapChangePercentag24h,totalVolume,marketCapChange24h }) => {
 
@@ -58,7 +59,10 @@ const Detial = ({name,symbol,image,rank,price,high,low,change24,persentChange,la
                             </div>
                         </div>
                     </div>
-                    <div style={{display : "flex"}}>
+                    <div style={{
+                        display : "flex",
+                        borderBottom : "1px solid #003B7370"
+                }}>
                         <div className={styles.marketCap}>
                             <div className={styles.marketTitle}>
                                 <ul>
@@ -96,8 +100,10 @@ const Detial = ({name,symbol,image,rank,price,high,low,change24,persentChange,la
                             </div>
                         </div>
                     </div>
-                    <div>
-                        
+                    <br />
+                        <h3>Weekly Price Report Chart</h3>
+                    <div className={styles.priceCharts}>
+                            <Chart weekChange={weekChange} />
                     </div>
                 </div>
             </div>

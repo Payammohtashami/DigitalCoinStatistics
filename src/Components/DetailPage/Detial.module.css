@@ -130,10 +130,18 @@
 .marketCap div>ul {
     list-style: none;
 }
+.priceCharts {
+    border-radius: 20px;
+    margin-top: 20px;
+    /* padding: 25px; */
+    height: 400px;
+    width: 100%;
+    background-color: #BFD7ED20;
+}
 
 /* back button */
 .backbtn {
-    margin-top: 20px;
+    margin: 30px 0 40px 0;
 }
 .backbtn a {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;

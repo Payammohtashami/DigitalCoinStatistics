@@ -1,5 +1,5 @@
 .container {
-width: 85%;
+width: 90%;
 }
 a {
     text-decoration: none;
@@ -12,15 +12,12 @@ a {
     color: #145ca0;
     font-size: 0.9rem;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in;
 }
 .menu li>img {
     margin: 0 10px;
     width: 20px;
 }
 .menu li:hover {
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    border-radius: 30px;
-    color: var(--col2);
-    padding: 9px 0;
+    border-left:5px solid #145ca0;
 }

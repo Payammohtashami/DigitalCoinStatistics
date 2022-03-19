@@ -6,3 +6,8 @@ export const persentCalc = (min , max , now)=>{
 
     return result
 }
+
+export const calculator = (input , output , number) => {
+    const result = (parseFloat(input) * parseFloat(number)) / parseFloat(output);
+    return result.toFixed(5)
+}

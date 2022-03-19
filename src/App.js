@@ -20,6 +20,7 @@ import Footer from './Components/Footer/layout';
 // Contexts
 import CoinsContext from './Context/CoinContext';
 import  AllCoin from './Context/AllCoin';
+import Calculators from './Context/Calculators';
 
 
 const App = () => {
@@ -30,23 +31,25 @@ const App = () => {
   return (
     <CoinsContext>
       <AllCoin>
-    <>
-    <div className={styles.container}>
-      <Menu />
-      <Routes >
-        <Route path='/' element={<Body />} / >
-        <Route path="/detail/:id" element={<Detail />} / >
-        <Route path="/Exchange" element={<ExChange />} / >
-        <Route path="/Calculator" element={<Calculator />} / >
-        <Route path="/ChatRoom" element={<Chats />} / >
-        <Route path="/Setting" element={<Setting />} / >
-      </Routes>
-      <RightMenu />
-    </div> 
-    <div>
-      {/* <Footer /> */}
-    </div>
-    </>
+        <Calculators>
+          <>
+            <div className={styles.container}>
+              <Menu />
+                <Routes >
+                  <Route path='/' element={<Body />} / >
+                  <Route path="/detail/:id" element={<Detail />} / >
+                  <Route path="/Exchange" element={<ExChange />} / >
+                  <Route path="/Calculator" element={<Calculator />} / >
+                  <Route path="/ChatRoom" element={<Chats />} / >
+                  <Route path="/Setting" element={<Setting />} / >
+                </Routes>
+              <RightMenu />
+            </div> 
+            <div>
+              {/* <Footer /> */}
+            </div>
+          </>
+        </Calculators>
       </AllCoin>
     </CoinsContext>
   );
