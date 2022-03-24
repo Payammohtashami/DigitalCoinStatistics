@@ -5,6 +5,7 @@ import styles from '../../assets/css/layout.module.css'
 import Header from '../Head/header'
 import Cards from './cards';
 import CoinsList from './coinsList';
+import ChangePage from './ChangePage';
 
 const layout = () => {
     return (
@@ -12,6 +13,7 @@ const layout = () => {
             <Header />
             <Cards />
             <CoinsList />
+            <ChangePage />
         </div>
     );
 };

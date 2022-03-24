@@ -1,34 +1,51 @@
-import React, { createContext , useState} from 'react';
+import React, { createContext , useReducer} from 'react';
 
-export const ResultContext = createContext();
 export const DataContext = createContext();
-export const SetDataContext = createContext();
 
+
+const initialState = {
+    number : 0,
+    inputCoin : "",
+    inputPrice : 0,
+    outputCoin : "",
+    outputPrice : 0,
+    inputDisplayed : "block",
+    outputDisplayed : "block",
+    symbol : "",
+    calculate : 0
+}
+
+const reducer = (state , action) => {
+    switch(action.type){
+        case "INPUT_NUM" :
+            return { ...state, number : action.number}
+        case "INPUT_COIN" :
+            return { ...state , inputCoin : action.inputCoin}
+        case "OUTPUT_COIN" :
+            return { ...state , outputCoin : action.outputCoin}
+        case "INPUT_PRICE" :
+            return { ...state , inputPrice : action.inputPrice}
+        case "OUTPUT_PRICE" :
+            return { ...state , outputPrice : action.outputPrice}
+        case "INPUT_DISPLAY":
+            return {...state, inputDisplayed : action.inputDisplayed}
+        case "OUTPUT_DISPLAY":
+            return { ...state, outputDisplayed : action.outputDisplayed}
+        case "SET_SYMBOL":
+            return { ...state, symbol : action.symbol}
+        case "CALCULATE":
+            return {...state , calculate : action.calculate}
+        default:
+            return state
+    }
+}
 const Calculators = (props) => {
 
-    const [number , setNumber] = useState(0);
-    const [inputCoin , setinputCoin] = useState("");
-    const [inputPrice , setInputPrice] = useState(0);
-    const [outputCoin , setOutputCoin] = useState("");
-    const [outputPrice , setOutputPrice] = useState(0);
-    const [inputDisplayed , setInputDisplayed] = useState("block");
-    const [outputDisplayed , setOutputDisplayed] = useState("block");
-    const [calcResult , setCalcResult] = useState([]);
-    const [symbol , setSymbol] = useState("");
-
-
-    const calculatorData = [number , inputCoin , inputPrice , outputCoin ,outputPrice , inputDisplayed , outputDisplayed , calcResult , symbol]
-    const setCalculatorData = [setNumber , setCalcResult , setinputCoin , setInputPrice , setOutputCoin , setOutputPrice , setInputDisplayed , setOutputDisplayed , setSymbol]
-
-    
+    const [calcState , calcDispatch] = useReducer(reducer , initialState);
     return (
-                        <DataContext.Provider value={calculatorData}>
-                            <SetDataContext.Provider value={setCalculatorData}>
-                                <ResultContext.Provider value={calcResult}>
-                                    {props.children}
-                                </ResultContext.Provider>
-                            </SetDataContext.Provider>
-                        </DataContext.Provider>
+            <DataContext.Provider value={{calcState , calcDispatch}}>
+                        {props.children}
+            </DataContext.Provider>
     );
 };
 

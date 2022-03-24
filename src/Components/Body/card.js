@@ -1,7 +1,10 @@
-import React from 'react';
+import React , {useContext} from 'react';
 import styles from './assets/css/card.module.css'
 import { Link } from 'react-router-dom';
-const card = ({name , image , price ,symbol , high24 , low24 , marketCapRank}) => {
+import { CurrencyContext } from '../../Context/Currency';
+const Card = ({name , image , price ,symbol , high24 , low24 , marketCapRank}) => {
+
+    const {state} =useContext(CurrencyContext);
     return (
         <div className={styles.container}>
             <div className={styles.card}>
@@ -19,9 +22,9 @@ const card = ({name , image , price ,symbol , high24 , low24 , marketCapRank}) =
                         <li>Low(24h)</li>
                     </ul>
                     <ul>
-                        <li>${price} </li>
-                        <li>${high24} </li>
-                        <li>${low24}</li>
+                        <li>{state.symbol}{price} </li>
+                        <li>{state.symbol}{high24} </li>
+                        <li>{state.symbol}{low24}</li>
                     </ul>
                 </div>
                 <div className={styles.btn}>
@@ -32,4 +35,4 @@ const card = ({name , image , price ,symbol , high24 , low24 , marketCapRank}) =
     );
 };
 
-export default card;
+export default Card;

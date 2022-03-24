@@ -1,38 +1,33 @@
 import React, { useContext } from 'react';
 import styles from './assets/css/right.module.css';
-import {ResultContext,DataContext} from '../../Context/Calculators';
-
+import {DataContext} from '../../Context/Calculators';
+import { CurrencyContext } from '../../Context/Currency';
 
 const Rightsections = () => {
 
+    const {state} =useContext(CurrencyContext);
+    const {calcState} = useContext(DataContext);
 
-    const result = useContext(ResultContext)
-    const data = useContext(DataContext)
-    const symbol = data[8].toUpperCase()
-    const DollarChange = data[0] * data[4]
+    const DollarChange = calcState.outputPrice * calcState.number;
     return (
         <div className={styles.container}>
-            <div>
-                <h1 className={styles.mainChange}>{result[0]}<span>{symbol}</span></h1>
+            <div className={styles.symbol}>
+                <h1>{calcState.calculate} <span>{calcState.calculate > 0 && calcState.symbol.toUpperCase()}</span></h1>
             </div>
-            <div className={styles.changeList}>
+            <div className={styles.List}>
                 <div className={styles.listTitle}>
-                    <table>
-                        <tbody>
-                            <tr className={styles.table}>
-                                <td><span>{data[1]}</span> Price</td>
-                                <td>{data[2]}$</td>
-                            </tr >
-                            <tr className={styles.table}>
-                                <td><span>{data[3]}</span> Price</td>
-                                <td>{data[4]}$</td>
-                            </tr>
-                            <tr className={styles.table}>
-                                <td><span>{data[3]}</span> to Dollar</td>
-                                <td>{DollarChange}$</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <ul>
+                        <li className={styles.title}><span>{calcState.inputCoin}</span> Price</li>
+                        <li>{calcState.inputPrice}{state.symbol}</li>
+                    </ul >
+                    <ul>
+                        <li className={styles.title}><span>{calcState.outputCoin}</span> Price</li>
+                        <li>{calcState.outputPrice}{state.symbol}</li>
+                    </ul>
+                    <ul>
+                        <li className={styles.title}><span>{calcState.outputCoin}</span> to {state.symbol}</li>
+                        <li>{DollarChange.toFixed(5)}{state.symbol}</li>
+                    </ul>
                 </div>
             </div>
         </div>

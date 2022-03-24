@@ -1,17 +1,17 @@
 import React,{useContext} from 'react';
 import styles from './assets/css/search.module.css';
-// import { InputCoinContext,InputDisplayedContext,InputPriceContext } from './leftsections';
 
-import { SetDataContext} from '../../Context/Calculators';
+import { DataContext } from '../../Context/Calculators';
 
 const Input = ({name , price}) => {
-    const setDatas = useContext(SetDataContext);
+    const {calcDispatch} = useContext(DataContext);
 
 
     const setHandler = () => {
-        setDatas[3](price)
-        setDatas[2](name);
-        setDatas[6]("none");
+        calcDispatch({type : "INPUT_DISPLAY" , inputDisplayed : "none"});
+        calcDispatch({type : "INPUT_PRICE" , inputPrice : price})
+        calcDispatch({type : "INPUT_COIN" , inputCoin : name})
+
     }
 
     return (

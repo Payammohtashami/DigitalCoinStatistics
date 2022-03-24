@@ -1,0 +1,116 @@
+@import "./-variable.scss";
+
+// Sidebar Styles
+
+// Ligth Mode
+.sidebar-container {
+  width: 220px;
+  background-color: $CreamColor;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar-header {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    cursor: pointer;
+    width: 45px;
+  }
+}
+.sidebar-title {
+  margin-left: 15px;
+}
+.list {
+  margin: 10px 0;
+  width: 220px;
+
+  .list-item {
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: $Dark;
+
+    .list-item-icon {
+      font-size: 20px;
+      width: 30px;
+    }
+    &:hover {
+      background-color: $BlueGrotto;
+      color: $CreamColor;
+    }
+  }
+  .active {
+    background-color: $MainColor;
+    color: $CreamColor;
+  }
+}
+
+@media (max-width: 1200px) {
+  .sidebar-container {
+    width: 180px;
+  }
+  .list {
+    width: 180px;
+  }
+}
+@media (max-width: 992px) {
+  .sidebar-container {
+    width: 150px;
+  }
+  .sidebar-header {
+    flex-direction: column;
+  }
+  .list {
+    width: 150px;
+  }
+}
+@media (max-width: 768px) {
+  .sidebar-container {
+    width: 50px;
+  }
+  .list {
+    width: 50px;
+  }
+  .sidebar-header {
+    height: 65px;
+    img {
+      width: 40px;
+    }
+  }
+  .sidebar-title {
+    display: none;
+  }
+  .list-item {
+    span {
+      display: none;
+    }
+    .list-item-icon {
+      position: relative;
+      right: 5px;
+    }
+  }
+}
+// Dark Mode
+.sidebar-container.night {
+  background-color: $Dark;
+}
+.sidebar-title.night {
+  color: $CreamColor;
+}
+
+.list-item.night {
+  color: $CreamColor;
+  &:hover {
+    opacity: 1;
+    background-color: $BlueGrotto;
+  }
+}
+// -------------------------------------------------------

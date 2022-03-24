@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './Chart.module.css'
 import Line from './line';
-import ReactTooltip from 'react-tooltip';
+import { CurrencyContext } from '../../Context/Currency';
 const Chart = ({weekChange}) => {
 
-    
+    const {state} =useContext(CurrencyContext);
     const prices = weekChange.map( item => item.toFixed(2) )
 
     function myArrayMax(arr) {
@@ -29,13 +29,13 @@ const Chart = ({weekChange}) => {
         <div className={styles.container}>
             <div className={styles.Chart}>
                 <div className={styles.title}>
-                    <span>${max}</span>
-                    <span>${min}</span>
+                    <span>{state.symbol}{max}</span>
+                    <span>{state.symbol}{min}</span>
                 </div>
                 <div className={styles.price}>
                     <div className={styles.chartLine}>
                         {prices.map(
-                            (item) => <Line price={item}   lineHeight={heights(item , max , min)} />
+                            (item) => <Line price={item} key={item}   lineHeight={heights(item , max , min)} />
                         )}                          
                     </div>
                 </div>

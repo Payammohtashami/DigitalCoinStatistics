@@ -4,10 +4,9 @@ import styles from './assets/css/coinsList.module.css'
 import CoinList from './coinList'
 
 // Context
-import { CoinsContext } from '../../Context/CoinContext'
+import { CoinsContext } from '../../Context/CoinContext';
 
 const CoinsList = () => {
-
     const coins = useContext(CoinsContext)
 
     return (
@@ -37,7 +36,7 @@ const CoinsList = () => {
                 <div>
                 {
                     coins.map(coin =><CoinList
-                            key={coin.id}
+                            key={coin.market_cap_rank}
                             id={coin.id}
                             name={coin.name}
                             image={coin.image}

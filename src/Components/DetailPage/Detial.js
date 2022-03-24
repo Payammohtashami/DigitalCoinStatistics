@@ -1,13 +1,13 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import styles from './Detial.module.css';
 import { Link } from 'react-router-dom';
 import {persentCalc} from '../../helper/function';
 import ReactTooltip from 'react-tooltip';
 import Chart from './Chart'
-
+import { CurrencyContext } from '../../Context/Currency';
 const Detial = ({name,symbol,image,rank,price,high,low,change24,persentChange,lastUpdate,weekChange,marketCap,marketCapChangePercentag24h,totalVolume,marketCapChange24h }) => {
 
-
+    const {state} =useContext(CurrencyContext);
     const persent = persentCalc(low , high , price)
 
     const chartStyle = {
@@ -37,7 +37,7 @@ const Detial = ({name,symbol,image,rank,price,high,low,change24,persentChange,la
 
                         <div className={styles.priceDetial}>
                             <div className={styles.persentChange}>
-                                <h3>${price}</h3>
+                                <h3>{state.symbol}{price}</h3>
                                 {fixedPersent > 0 ?
                                     <p className={styles.pos}>{fixedPersent}%</p> 
                                         :
@@ -50,11 +50,11 @@ const Detial = ({name,symbol,image,rank,price,high,low,change24,persentChange,la
                                     <p>high(24h)</p>
                                 </div>
                                 <div className={styles.chart}>
-                                    <div data-tip={`$${price}`} style={chartStyle}></div>
+                                    <div data-tip={`${state.symbol}${price}`} style={chartStyle}></div>
                                 </div>
                                 <div className={styles.priceChart}>
-                                    <p>${low}</p>
-                                    <p>${high}</p>
+                                    <p>{state.symbol}{low}</p>
+                                    <p>{state.symbol}{high}</p>
                                 </div>
                             </div>
                         </div>
@@ -74,10 +74,10 @@ const Detial = ({name,symbol,image,rank,price,high,low,change24,persentChange,la
                             </div>
                             <div className={styles.marketPrice}>
                                 <ul>
-                                    <li>${marketCap}</li>
-                                    <li>${marketCapChange}</li>
+                                    <li>{state.symbol}{marketCap}</li>
+                                    <li>{state.symbol}{marketCapChange}</li>
                                     <li>{marketCapChangePercen}%</li>
-                                    <li>${totalVolume}</li>
+                                    <li>{state.symbol}{totalVolume}</li>
                                 </ul>
                             </div>
                         </div>
@@ -92,9 +92,9 @@ const Detial = ({name,symbol,image,rank,price,high,low,change24,persentChange,la
                             </div>
                             <div className={styles.marketPrice}>
                                 <ul>
-                                    <li>${low}</li>
-                                    <li>${high}</li>
-                                    <li>${change24}</li>
+                                    <li>{state.symbol}{low}</li>
+                                    <li>{state.symbol}{high}</li>
+                                    <li>{state.symbol}{change24}</li>
                                     <li>{lastUpdate}</li>
                                 </ul>
                             </div>
@@ -103,7 +103,7 @@ const Detial = ({name,symbol,image,rank,price,high,low,change24,persentChange,la
                     <br />
                         <h3>Weekly Price Report Chart</h3>
                     <div className={styles.priceCharts}>
-                            <Chart weekChange={weekChange} />
+                            <Chart kayvalue={rank} weekChange={weekChange} />
                     </div>
                 </div>
             </div>
