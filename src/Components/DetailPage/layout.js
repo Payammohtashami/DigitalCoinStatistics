@@ -6,7 +6,7 @@ import styles from '../../assets/css/layout.module.css';
 import { AllCoins } from '../../Context/AllCoin'
 
 // Components
-import Header from '../Head/header';
+import Header from '../Head/index';
 import Detail from'./Detial';
 
 const Layout = () => {

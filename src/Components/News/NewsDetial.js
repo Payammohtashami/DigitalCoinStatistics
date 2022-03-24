@@ -1,70 +1,52 @@
-import React from 'react';
-import Header from '../Head/header';
-import styled from 'styled-components';
-import styles from './styles.module.scss';
-import img2 from '../../assets/image/news2.jpg';
+import React,{useContext} from 'react';
 import {Link, useParams} from 'react-router-dom';
+
+// style
+import styled from 'styled-components';
+import '../../assets/scss/style.scss';
+
+// Components
+import Header from '../Head/index';
+
+// Context
 import {newsApi} from '../../Services/NewsApi/newsApi';
+import { Theme } from '../../Context/ThemeContext';
+// Image
+import img2 from '../../assets/image/news2.jpg';
 const NewsDetial = () => {
+    const {theme} = useContext(Theme)
     const params = useParams()
     const id = params.id;
     const data = newsApi[id - 1];
     return (
-        <div className={styles.container}>
-            <div>
-                <Header />
-            </div>
-            <Div>
-                <MainContainer>
-                    <ImageContainer>
-                        <Image src={img2} alt="BitCoin" />
-                    </ImageContainer>
-                    <div>
+        <div className={`container ${theme.theme}`}>
+            <Header />
+            <div className={`news-detail-container`}>
+                <div className={`main-news-container`}>
+                    <img src={img2} alt="BitCoin" />
+                    <div className={`news-detail-title ${theme.theme}`}>
                         <h2>{data.title}</h2>
                     </div>
                     <div>
-                        <p>{data.auther}</p>
-                        <p>{data.publish}</p>
+                        <p className="news-auther">{data.auther} , {data.publish}</p>
                     </div>
-                    <div>
+                    <div className={`news-paragraph ${theme.theme}`}>
                         <p>{data.paragraph1}</p>
                         <p>{data.paragraph2}</p>
                         <p>{data.paragraph3}</p>
                         <p>{data.paragraph4}</p>
                         <p>{data.paragraph5}</p>
                     </div>
-                </MainContainer>
-            </Div>
-            <div>
-                <Link to="/News"><Button>Back to News Page</Button></Link>
+                </div>
+            </div>
+            <div className={`news-back-btn ${theme.theme}`}>
+                <div>
+                    <Link  to="/News">Back to News Page</Link>
+                </div>
+
             </div>
         </div>
     );
 };
 
-
-const Div = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-`
-const MainContainer = styled.div`
-    width: 80%;
-    display; flex;
-    justify-content: center;
-    border-radius: 25px;
-    background-color: white;
-    
-    `
-    const Image = styled.img`
-    width: 200px;
-    `
-    const Button = styled.span`
-    background-color: blue; 
-    `
-    const ImageContainer = styled.div`
-    width: 100%;
-    display; flex;
-
-`
 export default NewsDetial;

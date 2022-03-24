@@ -6,7 +6,7 @@ import LeftSection from './leftsections'
 
 
 // Components
-import Header from '../Head/header';
+import Header from '../Head/index';
 
 const Layout = () => {
 

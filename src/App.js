@@ -10,11 +10,11 @@ import styled from 'styled-components'
 import Sidebar from './Components/Sidebar/index';
 import Body from './Components/Body/layout';
 import Detail from './Components/DetailPage/layout';
-import ExChange from './Components//Exchange/layout'; 
+import ExChange from './Components//Exchange/index'; 
 import Calculator from './Components/Calculator/layout';
 import Setting from './Components//Setting/layout';
 import Footer from './Components/Footer/layout';
-import News from './Components/News/layout'
+import News from './Components/News/index'
 import NewsDetail from './Components//News/NewsDetial'
 
 // Contexts

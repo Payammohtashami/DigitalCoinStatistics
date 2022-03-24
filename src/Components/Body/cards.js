@@ -7,7 +7,7 @@ import { CoinsContext } from '../../Context/CoinContext';
 
 // Components
 import Card from './card';
-import Loading from '../LoadingPage/layout'
+import Loading from '../LoadingPage/index'
 
 // styles
 import styles from './assets/css/cards.module.css';

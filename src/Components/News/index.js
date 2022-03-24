@@ -1,20 +1,28 @@
-import React,{useEffect, useState} from 'react';
-import Header from '../Head/header';
-import styles from './styles.module.scss';
-import News from './News';
+import React,{useEffect,useContext,useState} from 'react';
+// Style
+import '../../assets/scss/style.scss';
 
+// Components
+import Header from '../Head/index';
+import News from './NewsCard';
+
+// Database
+import {newsApi} from '../../Services/NewsApi/newsApi';
+
+// Context
+import { Theme } from '../../Context/ThemeContext';
+// Image
 import img1 from '../../assets/image/news3.jpg';
 
-import { newsApi } from '../../Services/NewsApi/newsApi';
 const Layout = () => {
     const [data , setData] = useState([])
-
+    const {theme} = useContext(Theme)
     useEffect(() => {
         setData(newsApi)
     }, [data]);
     
     return (
-        <div className={styles.container}>
+        <div className={`container ${theme.theme}`}>
             <Header />
             <div>{
                 data.map(news => <News key={news.id}
