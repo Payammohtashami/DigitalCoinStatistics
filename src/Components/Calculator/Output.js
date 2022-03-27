@@ -1,5 +1,4 @@
 import React,{useContext} from 'react';
-import styles from './assets/css/search.module.css';
 // import {OutputCoinContext,OutputDisplayedContext,OutputPriceContext } from './leftsections';
 import { DataContext} from '../../Context/Calculators';
 
@@ -16,7 +15,7 @@ const Output = ({name , price , symbol}) => {
     }
     
     return (
-            <div className={styles.cointainer}>
+            <div>
                 <button onClick={clickHandler}>{name}</button>
             </div>
     );

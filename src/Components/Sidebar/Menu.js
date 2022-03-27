@@ -36,7 +36,7 @@ const Menu = () => {
     return (
         <div>
             
-            <ul className={`list night ${theme.theme}`}>
+            <ul className={`list ${theme.theme}`}>
                 <Link to="/"><li onClick={() => {dispatch({type:"home"})}} className={`list-item ${active.home} ${theme.theme}`}><i className={`list-item-icon fa fa-home ${theme.theme} `}></i><span>Home</span></li></Link>
                 <Link to="/News"><li onClick={() => {dispatch({type:"news"})}}  className={`list-item ${active.news} ${theme.theme}`}><i className={`list-item-icon fa fa-tv ${theme.theme} `}></i><span>News</span></li></Link>
                 <Link to="/Exchange"><li onClick={() => {dispatch({type:"exchange"})}} className={`list-item ${active.exchange} ${theme.theme}`}><i className={`list-item-icon fa fa-exchange ${theme.theme} `}></i><span>Exchange</span></li></Link>

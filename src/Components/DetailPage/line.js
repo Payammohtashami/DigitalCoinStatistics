@@ -1,22 +1,21 @@
-import React from 'react';
-// import ReactTooltip from 'react-tooltip';
+import React,{useContext} from 'react';
 
-const line = ({lineHeight , price}) => {
+// Style
+import '../../assets/scss/style.scss'
+// Context
+import {Theme} from '../../Context/ThemeContext';
+const Line = ({lineHeight}) => {
 
+    const {theme} = useContext(Theme)
     const chartStyle = {
-        position: "relative",
         bottom: `${lineHeight / 1.25}%`,
-        width: "3.5px",
         height : `${lineHeight / 4}%` ,
-        backgroundColor: "#003B73",
-        borderRadius : "10px",
+        
     }
     return (
-        // data-tip={`$${price}`} 
-        <div style={chartStyle}>
-            {/* <ReactTooltip /> */}
+        <div className={`lines ${theme.theme}`} style={chartStyle}>
         </div>
     );
 };
 
-export default line;
+export default Line;

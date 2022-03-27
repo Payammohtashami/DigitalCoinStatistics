@@ -2,28 +2,28 @@ import React , {useContext} from 'react';
 
 
 // Context
-import { CoinsContext } from '../../Context/CoinContext';
-
+import {CoinsContext} from '../../Context/CoinContext';
+import { Theme } from '../../Context/ThemeContext';
 
 // Components
 import Card from './card';
 import Loading from '../LoadingPage/index'
 
 // styles
-import styles from './assets/css/cards.module.css';
+import '../../assets/scss/style.scss';
 
 
 const Cards = () => {
     
-    
-  const coinData = useContext(CoinsContext)
+    const{theme} = useContext(Theme)
+    const coinData = useContext(CoinsContext)
     return (
-        <div className={styles.container}>
-            <div className={styles.title}>
+        <div className={`card-container ${theme.theme}`}>
+            <div className={`main-title ${theme.theme}`}>
                 <h3>Market Demand</h3>
             </div>
                 { coinData.length ?
-                        <div className={styles.cards}>
+                        <div className={`cards-component ${theme.theme}`}>
                             <Card
                             key={coinData[0].market_cap_rank}
                             image={coinData[0].image}
@@ -56,9 +56,7 @@ const Cards = () => {
                             />
                         </div>
                             : <Loading />
-                        }
-                
-                
+                }
         </div>
     );
 };

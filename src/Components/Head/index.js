@@ -24,10 +24,10 @@ const Header = () => {
     return (
         <SearchContext.Provider value={setSearch}>
         <div className={`searchbar-container ${theme.theme}`}>
-            <div className={`serachbar`}>
+            <div className={`input-searchbar`}>
                 <input type="text" placeholder="Search your Coin name ..." value={search}  onChange={searchHandler} />
             </div>
-            <div name="hello" className={`searchbar`}>
+            <div name="hello" className={`searchbar-context`}>
                 <div className={`searchlist ${theme.theme}`}>
                     {
                         searchedCoin.length < 20 &&
@@ -39,7 +39,6 @@ const Header = () => {
                             marketCapRank={coin.market_cap_rank}
                             />)
                         }
-                
                 </div>
             </div>
         </div>

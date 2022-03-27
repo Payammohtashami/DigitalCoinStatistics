@@ -1,38 +1,39 @@
 import React , { useContext } from 'react';
 // Styles
-import styles from './assets/css/coinsList.module.css'
+import '../../assets/scss/style.scss';
 import CoinList from './coinList'
 
 // Context
 import { CoinsContext } from '../../Context/CoinContext';
+import {Theme} from '../../Context/ThemeContext';
+
 
 const CoinsList = () => {
     const coins = useContext(CoinsContext)
-
+    const {theme} =useContext(Theme)
     return (
-        <div className={styles.container}>
-            <div className={styles.secendContainer}>
-                <div className={styles.title}>
+        <div className={`coins-container`}>
+            <div className={`main-coins-container`}>
+                <div className={`main-title`}>
                     <h3>All Coins</h3>
                 </div>
-                <div className={styles.body}>
-                <div className={styles.tableCon}>
-                    <div className={styles.header}>
-                        <table>
-                            <thead>
-                            <tr className={styles.table}>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Price Change (24h)</th>
-                                <th>Low Price (24h)</th>
-                                <th>High Price (24h)</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                        </table>
+                <div className={`coins-list-body ${theme.theme}`}>
+                    <div className={`table-header-container`}>
+                        <div className={`table-header ${theme.theme}`}>
+                            <table className={`title-coins-table`}>
+                                <thead>
+                                <tr >
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Price Change (24h)</th>
+                                    <th>Low Price (24h)</th>
+                                    <th>High Price (24h)</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                
                 <div>
                 {
                     coins.map(coin =><CoinList

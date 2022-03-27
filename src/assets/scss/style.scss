@@ -87,6 +87,9 @@
   }
   .list {
     width: 50px;
+    .list-item {
+      font-size: 14px;
+    }
   }
   .sidebar-header {
     height: 65px;
@@ -126,45 +129,40 @@
 
 // Searchbar Section
 .searchbar-container {
-  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
   padding: 20px 0;
 }
-
-.serachbar {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-
-}
-.serachbar input {
-  background-color: $CreamColor;
+.input-searchbar {
   width: 80%;
-  height: 40px;
-  border: none;
-  border-radius: 5px;
-  padding-left: 20px;
+  display: flex;
+  justify-content: center;
+  input {
+    background-color: $CreamColor;
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    padding-left: 20px;
+    &:focus{
+      background-color: white;
+    }
+  }
 }
-
-.serachbar input:focus{
-  background-color: white;
-}
-.searchbar {
-  width: 100%;
+.searchbar-context {
+  width: 80%;
   display: flex;
   justify-content: center;
 }
 .searchlist {
-  margin-top: 5px;
-  border-radius: 5px;
-  overflow: hidden;
-  width: 81.5%;
+  margin-top: 20px;
   z-index: 100;
 }
 .searchedlist-container {
-  display: flex;
-  width: 90%;
   padding: 10px 0;
-  
   cursor: pointer;
   a{
     color: white;
@@ -179,13 +177,12 @@
     }
   }
 }
-.search-title {
+.searched-title {
   display: flex;
 }
-.search-lists{
+.search-lists-style{
   opacity: 0.9;
   background-color: $BlueGrotto;
-  width: 100%;
   display: flex;
   justify-content: center;
   &:hover {
@@ -200,6 +197,27 @@
   }
 }
 
+@media (max-width:992px) {
+  .input-searchbar {
+    input {
+      height: 30px;
+      font-size: 13px;
+      &::placeholder {
+        font-size: 13px;
+      }
+    }
+  }
+}
+@media (max-width: 576px) {
+  .input-searchbar {
+    input {
+      font-size: 11px;
+      &::placeholder {
+        font-size: 11px;
+      }
+    }
+  }
+}
 // Dark
 .searchbar-container.night{
   background-color: $MainColor;
@@ -333,6 +351,55 @@
     top: -25px;
   }
 }
+@media (max-width: 586px) {
+
+  @keyframes slideleft{
+    0%{
+        background-color: $LightBlue;
+        transform: translateX(0px);
+    }
+    25%{
+        background-color: $MainColor;
+        transform: translateX(-50px);
+    }
+    50%{
+        background-color: $BlueGrotto;
+        transform: translateX(0px);
+    }
+    100%{
+        background-color: $LightBlue;
+    }
+  }
+  @keyframes slideright{
+    0%{
+        background-color: $LightBlue;
+        transform: translateX(0px);
+    }
+    25%{
+        background-color: $MainColor;
+        transform: translateX(50px);
+    }
+    50%{
+        background-color: $BlueGrotto;
+        transform: translateX(0px);
+    }
+    100%{
+        background-color: $LightBlue;
+    }
+  }
+  .loader-circle , .loader {
+    width: 20px;
+    height: 20px;
+
+  }
+  .loader-circle:nth-child(1){
+    left: -30px;
+  }
+  .loader-circle:nth-child(2){
+    left: 30px;
+    top: -20px;
+  }
+}
 
 //  ***------------------------------------------------*** //
 
@@ -345,44 +412,48 @@
   margin: 50px 0;
 }
 .news-box {
-  width: 80%;
   display: flex;
-  align-items: center;
-  height: 150px;
+  flex-direction: column;
+  width: 80%;
   background-color: $CreamColor;
   border-radius: 4px;
+  padding: 20px 0px;
 }
 .news-description {
+  width: 100%;
   display: flex;
-  img{
+  justify-content: space-around;
+  div{
+    img{
       width: 100px;
       height: 100px;
       border-radius: 50%;
-      margin-left: 30px;
+    }
   }
 }
-.news-title {
+.news-page-title {
   width: 80%;
-  margin-left: 20px;
+  margin-top: 10px;
   h3{
-      color: $MainColor;
-      padding-bottom: 5px;
-      font-size: 1rem;
-      border-bottom: 1px solid silver;
+    color: $MainColor;
+    padding-bottom: 5px;
+    font-size: 1rem;
+    border-bottom: 1px solid silver;
   }
   p{
-    padding: 10px 0;
+    margin: 10px 0;
   }
-  div{
-    text-align: right;
-    a {
-      background-color: $MainColor;
-      color: $CreamColor;
-      font-weight: 700;
-      padding: 5px 10px;
-      border-radius: 2px;
-      text-align: right;
-      }
+}
+.readmore-button {
+  margin: 20px 2%;
+  display: flex;
+  justify-content: end;
+  a {
+    background-color: $MainColor;
+    font-size: 14px;
+    color: $CreamColor;
+    padding: 5px 10px;
+    border-radius: 2px;
     }
 }
 .news-detail-container {
@@ -407,10 +478,11 @@
   div{
     width: 80%;
     a{
+      font-size: 15px;
       background-color: $MainColor;
       color: $CreamColor;
       padding: 8px 15px;
-      border-radius: 5px;
+      border-radius: 3px;
     }
   }
 }
@@ -419,34 +491,24 @@
   color: $MainColor;
   border-bottom: 1px solid $MainColor;
   h2 {
+    font-size: 1.2rem;
     color: $MainColor;
   }
 }
 .news-auther {
   color: $BlueGrotto;
   padding-top: 10px;
+  font-size: 1rem;
 }
 .news-paragraph {
-  font-size: 1.2rem;
+  font-size: 1rem;
   p{
     color: $Dark;
     margin: 12px 0;
   }
 }
-@media (max-width: 1200px) {
-  .news-title {
-    width: 75%;
-    div{
-      position: relative;
-      top: 20px;
-    }
-  }
-  .news-box {
-    height: 200px;
-  }
-}
 @media (max-width: 992px){
-  .news-title {
+  .news-page-title {
     width: 68%;
     div{
       position: relative;
@@ -457,23 +519,44 @@
 @media (max-width: 768px){
   .main-news-container{
     img{
+      margin: 0;
       width: 200px;
     }
   }
-  .news-title {
-    width: 64%;
-    div{
-      position: relative;
-      top: 20px;
+  .news-detail-title {
+    h2 {
+      font-size: 1rem;
     }
   }
-  .news-box {
-    height: 250px;
+  .news-auther {
+    font-size: 13px;
+  }
+  .news-back-btn {
+    div{
+      a {
+        padding: 6px 8px;
+        font-size: 12px;
+      }
+    }
+  }
+  .news-page-title {
+    width: 64%;
+    h3 {
+      font-size: 15px;
+    }
+    p {
+      font-size: 13px;
+    }
   }
   .news-paragraph{
-    font-size: 1rem;
+    font-size: 13px;
   }
-  
+  .readmore-button {
+    a{
+      font-size: 12px;
+      padding: 4px 5px;
+    }
+  }
 }
 @media (max-width: 576px){
   .news-description{
@@ -483,21 +566,13 @@
       margin: 0 0 20px 0px;
     }
   }
-  .news-title{
+  .news-page-title{
     width: 90%;
     margin: 0;
-  }
-  .news-box {
-    height: 430px;
   }
   .main-news-container{
     img{
       width: 150px;
-    }
-  }
-  .news-detail-title{
-    h2 {
-      font-size: 1.2rem;
     }
   }
   .news-back-btn {
@@ -507,12 +582,13 @@
       }
     }
   }
+
 }
 // Dark
 .news-box.night {
   background-color: $Dark;
 }
-.news-title.night {
+.news-page-title.night {
   color: $CreamColor;
   h3{
     color: $BlueGrotto;
@@ -537,3 +613,1247 @@
     color: white;
   }
 }
+
+
+//  ***------------------------------------------------*** //
+// Calculator
+
+// Light
+.calculator-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.calculator-body {
+  margin-bottom: 50px;
+  border-radius: 5px;
+  width: 80%;
+  display: flex;
+  background-color: $CreamColor;
+  .left-calculator {
+    width: 50%;
+    border-right: 1px solid $BlueGrotto;
+  }
+  .right-calculator {
+        width: 50%;
+  }
+}
+
+.left-calculator-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.calculator-manage {
+  margin: 25px 0;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  input {
+    background-color: white;
+    font-size: 13px;
+    padding: 0 15px;
+    margin: 15px 0;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+  }
+}
+.calculator-button {
+  margin: 15px 0;
+  border: none;
+  color: white;
+  background-color: $MainColor;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: $BlueGrotto;
+  }
+}
+.searchlist {
+  position: relative;
+  top: -19px;
+  background-color: $LightBlue;
+  overflow: hidden;
+  border-radius: 5px;
+  width: 100%;
+  button {
+    margin: 0;
+    padding: 5px 0;
+    font-size: 0.9rem;
+    width: 100%;
+    background-color: $LightBlue;
+    border: none;
+    cursor: pointer;
+    &:hover{
+      background-color: $BlueGrotto;
+    }
+  }
+}
+.changeList {
+  width: 90%;
+}
+.calculator-symbol {
+  width: 100%;
+  height: 90px;
+  text-align: center;
+  h1{
+    margin-top: 60px;
+    span {
+      color: rgba(0, 0, 0, 0.5);
+      font-size: 1.5rem;
+    }
+  }
+}
+.calculator-list {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.calculator-title {
+  width: 75%;
+  span {
+    font-weight: bold;
+}
+}
+.calculator-list-item {
+  width: 90%;
+  ul {
+    margin: 0;
+    padding: 10px 0;
+    display: flex;
+    list-style: none;
+    border-bottom: 1px solid $BlueGrotto;
+    &:hover {
+      background-color: $BlueGrotto;
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .calculator-body{
+    flex-direction: column;
+    .left-calculator {
+      border-right: none;
+      width: 100%;
+    }
+    .right-calculator {
+      width: 100%;
+      padding-bottom: 50px;
+      border-top: 1px solid black;
+    }
+  }
+}
+@media (max-width:768px) {
+  .calculator-manage {
+    input {
+      height: 30px;
+      font-size: 11px;
+    }
+  }
+  .calculator-button {
+    height: 30px;
+  }
+  .calculator-list-item {
+    ul {
+      li {
+        font-size: 12px;
+      }
+    }
+  }
+  .calculator-symbol {
+    h1 {
+      font-size: 20px;
+      span {
+        font-size: 15px;
+      }
+    }
+  }
+  .searchlist {
+    button {
+      font-size: 12px;
+    }
+  }
+}
+// Dark
+.calculator-body.night {
+  background-color: $Dark
+}
+.calculator-manage.night {
+  input{
+    background-color: $BlueGrotto;
+    color: $CreamColor;
+    &::placeholder{
+      color: $LightBlue;
+    }
+  }
+}
+.calculator-symbol.night {
+  color: $CreamColor;
+  h1 {
+    span {
+      color: $LightBlue;
+    }
+  }
+}
+.calculator-list-item.night {
+  color: $CreamColor;
+}
+
+
+//  ***------------------------------------------------*** //
+// Setting Style
+
+// Light
+
+.setting-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.setting-body{
+  display: flex;
+  justify-content: center;
+  background-color: $CreamColor;
+  border-radius: 5px;
+  width: 90%;
+  margin-bottom: 50px;
+}
+.settinng-main-container{
+  margin: 30px 0;
+  text-align: center;
+  width: 40%;
+  min-height: 400px;
+}
+.Currency-type {
+  margin: 50px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  select {
+    border: none;
+    width: 100px;
+    font-size: 0.9rem;
+    
+  }
+}
+.theme-change-Box{
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.dark {
+  border-radius: 5px;
+  width: 40px;
+  height: 40px;
+  background-color: $MainColor;
+  border: 1px solid $MainColor;
+}
+.light {
+  position: relative;
+  top: -42px;
+  right: 60px;
+  border-radius: 5px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid $BlueGrotto;
+  background-color: $LightBlue;
+}
+@media (max-width: 992px) {
+  .settinng-main-container {
+    width: 60%;
+    h2 {
+      font-size: 1.3rem;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .settinng-main-container {
+    width: 80%;
+    h2 {
+      font-size: 1.1rem;
+    }
+  }
+  .Currency-type {
+    margin: 20px 0;
+    h3 {
+      font-size: 1rem;
+    }
+    select {
+      font-size: 0.8rem;
+      option {
+        font-size: 0.8rem;
+      }
+    }
+  }
+  .theme-change-Box {
+    div {
+      h3 {
+        font-size: 1rem;
+      }
+    }
+  }
+  .dark {
+    height: 30px;
+    width: 30px;
+  }
+  .light {
+    width: 30px;
+    top: -32px;
+    right: 40px;
+    height: 30px;
+
+  }
+  
+}
+@media (max-width: 576px) {
+  .theme-change-Box {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .Currency-type {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    select {
+      margin: 20px 0;
+    }
+  }
+  .theme-change-Box {
+    div{
+      margin: 10px;
+    }
+  }
+  .light {
+    position: static;
+  }
+}
+// Dark 
+.setting-body.night {
+  background-color: $Dark;
+}
+.Currency-type.night {
+  color: $CreamColor;
+  select {
+    background-color: $BlueGrotto;
+    color: $CreamColor;
+  }
+}
+.settinng-main-container.night {
+  h2 {
+    color: $CreamColor;
+  }
+}
+.theme-change-Box.night {
+  div{
+    h3 {
+      color: $CreamColor;
+    }
+  }
+}
+
+
+//  ***------------------------------------------------*** //
+// Main Page
+
+// Light
+.main-card-container {
+  width: 250px;
+  height: 320px;
+  background-color: $CreamColor;
+  overflow: hidden;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+  color: $Dark;
+  &:hover {
+    background-color: $MainColor;
+    color: white;
+  }
+  
+}
+.main-card{
+  text-align: center;
+  width: 100%;
+}
+.card-image {
+  margin-top: 20px;
+  width: 100%;
+  img {
+    max-width: 50px;
+    max-height: 50px;
+}
+}
+.card-list {
+  width: 100%;
+  ul {
+    margin: 25px 0 20px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    li {
+      width: 100%;
+    }
+  }
+}
+.list-title {
+  opacity: 0.5;
+}
+.card-button{
+  button{
+    width: 70%;
+    height: 35px;
+    border: 1px solid $MainColor;
+    background-color: white;
+    border-radius: 5px;
+
+    &:hover {
+      border: 1px solid white;
+      cursor: pointer;   
+      }
+    }
+  }
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 70px;
+}
+.cards-component {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.main-title {
+    margin: 20px 65px;
+    color: $MainColor;
+}
+
+.coins-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.main-coins-container {
+  width: 95%;
+  height: 100%;
+}
+.coins-list-body {
+  width: 100%;
+  height: 100%;
+  background-color: $CreamColor;
+  border-radius: 5px;
+}
+.table-header{
+  border-radius: 5px;
+  margin-top: 10px ;
+  width: 100%;
+  background-color: $LightBlue;
+}
+.table-header-container {
+  text-align: left;
+}
+.title-coins-table {
+  width: 100%;
+  th {
+    height: 45px;
+    &:nth-child(1){
+      padding-left: 20px;
+      width: 17%;
+    }
+    &:nth-child(2){
+      width: 13%;
+    }
+    &:nth-child(3){
+      width: 20%;
+    }
+    &:nth-child(4){
+      width: 18%;
+    }
+    &:nth-child(5){
+      width: 20%;
+    }
+  }
+}
+
+.coins-list-container {
+  margin: 20px;
+  cursor: pointer;
+}
+.coin-list-image{
+  img {
+    width: 30px;
+  } 
+}
+
+.coin-table-descriptoin {
+  text-align: left;
+  width: 100%;
+}
+
+.coin-name{
+  width: 12%;
+}
+.coin-price {
+  width: 13.5%;
+}
+.coin-change-color {
+  width: 21%;
+}
+.CoinLow {
+width: 18.5%;
+}
+.CoinHigh {
+  width: 19.5%;
+}
+
+.detial-button{
+  width: 12%;
+  button {
+    color: $MainColor;
+    border: 2px solid $MainColor;
+    width: 100%;
+    height: 30px;
+    border-radius: 4px;
+    background-color: $CreamColor;    
+    cursor: pointer;
+    &:hover {
+      background-color: $MainColor;
+      color: $CreamColor;
+    } 
+  }
+}
+.coin-change-color{
+  font-size: 0.9rem;
+  .negative { 
+    padding: 3px 8px;
+    border-radius: 5px;
+    background-color: #ff000044;
+    color: red;
+  }
+  .positive {
+    padding: 3px 8px;
+    border-radius: 5px;
+    background-color: #5eff0046;
+    color: #3dac2e;
+  }
+}
+@media (max-width:992px) {
+  .cards-component{
+    align-items: center;
+    flex-direction: column;
+  }
+  .main-card-container {
+    margin: 10px 0;
+  }
+  .title-coins-table {
+    th{
+      &:nth-child(1){
+        width: 28%;
+      }
+      &:nth-child(2){
+        width: 27%;
+        
+      }
+      &:nth-child(3){
+        width: 35%;
+
+      }
+      &:nth-child(4){
+        display: none;
+      }
+      &:nth-child(5){
+        display: none;
+      }
+    }
+  }
+  .coin-name{
+    width: 20%;
+  }
+  .coin-price {
+    width: 29%;
+  }
+  
+  .CoinLow {
+    display: none;
+  }
+  .CoinHigh {
+    display: none;
+  }
+  .coin-change-color{
+    width: 30%;
+  }
+  .detial-button{
+    width: 15%;
+  }
+  .main-title {
+    font-size: 13px;
+  }
+}
+@media (max-width: 768px) {
+  .main-card-container {
+    height: 280px;
+  }
+  .card-button {
+    button {
+      width: 50%;
+      height: 25px;
+    }
+  }
+}
+@media (max-width: 576px) {
+  .main-card-container {
+    height: 250px;
+    width: 200px;
+  }
+  .coin-list-image {
+    img {
+      width: 22px;
+    }
+  }
+  .coin-change-color {
+    display: none;
+  }
+  .coin-name{
+    font-size: 0.8rem;
+    width: 35%;
+  }
+  .coin-price {
+    font-size: 0.8rem;
+    width: 40%;
+  }
+  .detial-button{
+
+    width: 15%;
+    button{
+      height: 25px;
+      font-size: 12px;
+    }
+  }
+  .title-coins-table {
+    th{
+      &:nth-child(1){
+        width: 45%;
+        font-size: 0.8rem;
+      }
+      &:nth-child(2){
+        font-size: 0.8rem;
+        width: 40%;
+      }
+      &:nth-child(3){
+        font-size: 0.8rem;
+        display: none;
+      }
+    }
+  }
+  .card-image {
+    img {
+    width: 35px;
+    }
+  }
+  .list-title , .money-card {
+    font-size: 0.9rem;
+  }
+}
+// Dark
+.main-card-container.night {
+  background-color: $Dark;
+  color: $CreamColor;
+  &:hover {
+    background-color: $BlueGrotto;
+  }
+}
+.coins-list-body.night {
+  background-color: $Dark;
+}
+.table-header.night {
+  background-color: $BlueGrotto;
+  color: $CreamColor;
+}
+.detial-button.night {
+  button{
+    color: $CreamColor;
+    background-color: $BlueGrotto;
+    &:hover{
+      background-color: $LightBlue;
+      color: $MainColor;
+    }
+  }
+}
+.coin-table-descriptoin.night {
+  color: $CreamColor;
+}
+
+
+//  ***------------------------------------------------*** //
+// Page Handler Styles
+// Light
+.page-handler {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  margin: 20px 0;
+  h3 {
+    border-bottom: 2px solid $Dark;
+    color: $Dark;
+    width: 20px;
+    padding: 2px 15px;
+  }
+}
+.page-handler-button{
+  button {
+    border: none;
+    width: 80px;
+    padding: 8px 0;
+    border-radius: 3px;
+    color: $CreamColor;
+    background-color: $MainColor;
+    margin: 10px;
+  }
+}
+@media (max-width:768px) {
+  .page-handler-button{
+    button {
+      padding: 3px 0;
+      width: 50px;
+      font-size: 12px;
+    }
+  }
+  .page-handler {
+    h3 {
+      font-size: 14px;
+    }
+  }
+}
+.page-handler.night {
+  h3{
+    color: $CreamColor  ;
+    border-bottom: 2px solid $LightBlue;
+  }
+}
+.page-handler-button.night {
+  button {
+    background-color: $CreamColor;
+    color: $Dark;
+  }
+}
+
+//  ***------------------------------------------------*** //
+// Footer styles
+
+// Light
+.footer-container {
+  background-color: $CreamColor;
+  min-height: 200px;
+}
+.footer-main-container {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+.footer-space-manager{
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+}
+.copyright-text {
+  margin-top: 40px;
+  border-top: 1px solid $MainColor;
+  color: $MainColor;
+  padding: 5px 0;
+  
+}
+.footer-title {
+  font-weight: bold;
+  border-bottom: 1px solid $MainColor;
+  padding: 4px 0;
+  margin: 4px 0;
+}
+.footer-list {
+  li {
+    cursor: pointer;
+    padding: 5px 0;
+    &:hover {
+      background-color: $LightBlue;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .footer-space-manager {
+    flex-direction: column;
+  }
+  .footer-title {
+    border: none;
+  }
+  .copyright-text {
+    p {
+      font-size: 12px;
+    }
+  }
+  .footer-list {
+    margin: 20px 0;
+    li {
+      font-size: 14px;
+    }
+  }
+}
+// Dark
+.footer-container.night {
+  background-color: $Dark;
+}
+.footer-list.night {
+  li {
+    color: $CreamColor;
+    &:hover {
+      color: $Dark;
+    }
+  }
+}
+.copyright-text.night {
+  color: $LightBlue;
+}
+
+
+//  ***------------------------------------------------*** //
+// Detail Page
+
+// Light
+
+.chart-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.detail-chart {
+  width: 97%;
+  height: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+.maxprice-detail {
+  padding-right: 5px;
+  text-align: center;
+  width: 10%;
+  height: 300px;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+.chart-line-container {
+  width: 90%;
+  height: 300px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid silver;
+  border-left: 2px solid silver;
+  display: flex;
+  align-items: flex-end;
+}
+.chart-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 98%;
+  height: 95%;
+  margin-left: 15px;
+  padding: 0 1px;
+}
+
+
+.detail-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.detail-title {
+  margin: 0 0 5px 0;
+  padding: 20PX;
+  width: 90%;
+  background-color: $CreamColor;
+  border-radius: 5px;
+}
+.detail-header {
+  display: flex;
+  padding-bottom: 20px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $MainColor;
+}
+.detail-description {
+  display: flex;
+  .coin-image img {
+    width: 55px;
+  }
+}
+.description {
+  padding: 5px 8px;
+  p {
+    margin: 5px 0;
+  }
+}
+
+.priceDetial {
+  display: flex;
+}
+.detail-maxprice-shows {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  background-color: white;
+  width: 400px;
+  border-radius: 5px;
+}
+.persentChange {
+  display: flex;
+  text-align: center;
+}
+.persentChange h3{
+  margin-right: 10px;
+  margin-top: 10px;
+}
+.persentChange p {
+  padding: 5px 10px;
+  height: 23px;
+  font-size: 0.7rem;
+  color: white;
+  border-radius: 4px;
+}
+.pos {
+  background-color: #77ca47;
+}
+.neg {
+  background-color: #EC255A;
+}
+.chart {
+  width: 80%;
+  background-color: #BFD7ED;
+  height: 5px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.priceChart {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+.detail-maxprice-description {
+  color: $MainColor;
+  margin: 0;
+  padding: 5px 0;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  p {
+    font-size: 14px;
+    padding-bottom: 5px;
+  }
+}
+.titledetial {
+  display: flex;
+  padding: 20PX;
+  width: 90%;
+  background-color: white;
+  border-radius: 20px;
+}
+.secendContainer {
+  margin: 0 0 20px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+.marketCap {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  border-right: 1px solid #003B7350;
+}
+.price {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+.price div>ul {
+  list-style: none;
+}
+.detail-market-title{
+  ul{
+    li {
+    color: $Dark;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    } 
+  }
+}
+.market-detail-price{
+  ul{
+    li{
+      font-size: 0.9rem;
+      padding: 5px 20px;
+      text-align: right;
+      font-weight: bold;
+    }
+  }
+} 
+.marketCap div>ul {
+  list-style: none;
+}
+.detial-price-charts {
+  border-radius: 5px;
+  margin-top: 20px;
+  width: 100%;
+  background-color: white;
+  h3 {
+    padding: 20px;
+  }
+}
+
+.back-detail-button {
+  margin: 30px 0;
+a {
+  font-size: 16px;
+  margin: 0 4.5%;
+  background-color: $MainColor;
+  padding: 8px 15px;
+  height: 40px;
+  border-radius: 5px;
+  color: white;
+  &:hover {
+    background-color: $BlueGrotto;
+    }
+  }
+}
+
+.lines {
+  background-color: $MainColor;
+  border-radius : 20px;
+  position: relative;
+  width: 0.4%;
+}
+.harkhari {
+  display : flex;
+  border-bottom : 1px solid $MainColor;
+}
+
+@media(max-width:992px) {
+  .chart-line-container {
+    height: 250px;
+  }
+  .detail-header {
+    flex-direction: column;
+    border-bottom: none;
+    padding-bottom: 40px;
+  }
+  .chart-line {
+    width: 100%;
+  }
+  .lines {
+    width: 2px;
+  }
+  .detail-description {
+    margin-bottom: 30px;
+  }
+  .harkhari {
+    flex-direction: column;
+  }
+  .marketCap {
+    width: 100%;
+    border: none;
+  }
+  .price {
+    border-top: 1px solid $MainColor;
+    width: 100%;
+  }
+  .detail-chart {
+    width: 98%;
+  }
+  .maxprice-detail {
+    width: 14%;
+    height: 250px;
+    span {
+      font-size: 14px;
+    }
+  }
+  .back-detail-button {
+    a {
+      font-size: 13px;
+      padding: 5px 10px;
+    }
+  }
+}
+@media(max-width:768px) {
+.detial-price-charts {
+    h3 {
+      font-size: 15px;
+    }
+  }
+.persentChange p {
+  font-size: 10px;
+  height: 16px;
+  padding: 2px 5px;
+}
+.persentChange h3{
+  font-size: 15px;
+}
+  .description {
+    h3 {
+      font-size: 15px;
+    }
+    p {
+      font-size: 12px;
+    }
+  }
+  .priceChart {
+    p {
+      font-size: 12px;
+    }
+  }
+  .detail-maxprice-description {
+    p {
+      font-size: 12px;
+    }
+  }
+  .detail-maxprice-shows {
+    width: 300px;
+  }
+  .chart-line-container {
+    height: 200px;
+  }
+  .detail-market-title {
+    ul {
+      li {
+        font-size: 13px;
+      }
+    }
+  }
+  .market-detail-price {
+    ul {
+      li {
+        font-size: 13px;
+      }
+    }
+  }
+  .maxprice-detail {
+    width: 15%;
+    height: 200px;
+    span {
+      font-size: 13px;
+    }
+  }
+  .detail-description{
+    .coin-image img {
+      width: 40px;
+    }
+  }
+  .lines {
+    width: 1.2px;
+  }
+  .back-detail-button {
+    margin: 20px 0;
+    a {
+      font-size: 12px;
+      padding: 5px 8px;
+    }
+  }
+}
+@media (max-width: 576px) {
+  .lines {
+    width: 0.8px;
+  }
+  .maxprice-detail {
+    width: 18%;
+    height: 150px;
+    span {
+      font-size: 10px;
+    }
+  }
+  .detail-maxprice-shows {
+    width: 200px;
+  }
+  .chart-line-container {
+    height: 150px;
+  }
+  .detail-market-title {
+    ul {
+      li {
+        font-size: 10px;
+      }
+    }
+  }
+  .market-detail-price {
+    ul {
+      li {
+        font-size: 10px;
+      }
+    }
+  }
+}
+// Dark
+.detail-title.night {
+  background-color: $Dark;
+}
+.back-detail-button.night {
+  a{
+    background-color: $BlueGrotto;
+    &:hover {
+      background-color: $LightBlue;
+      color: $Dark;
+      }
+  }
+}
+.detial-price-charts.night {
+  background-color: $MainColor;
+  color: $CreamColor;
+  h3 {
+    color: $LightBlue;
+  }
+}
+.detail-market-title.night {
+  ul{
+    li{
+      color: $CreamColor;
+    }
+  }
+}
+.market-detail-price.night {
+  ul {
+    li {
+      color: $CreamColor;
+    }
+  }
+}
+.chart-line.night {
+  background-color: $CreamColor;
+}
+.lines.night {
+  background-color: $CreamColor;
+}
+.detail-maxprice-shows.night {
+  background-color: $BlueGrotto;
+}
+.priceChart.night {
+  color: $CreamColor;
+}
+.persentChange.night {
+  h3 {
+    color: $CreamColor;
+  }
+}
+.description.night {
+  color: $CreamColor;
+}
+

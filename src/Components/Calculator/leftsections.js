@@ -1,29 +1,24 @@
 // Package and Styles
 import React , {useContext} from 'react';
-import styles from './assets/css/left.module.css';
+
+// Style
+import '../../assets/scss/style.scss';
 import styled from 'styled-components';
-import { calculator } from '../../helper/function'
 // Components
 import Output from './Output';
 import Input from './input';
 
 // Context
-import { AllCoins } from '../../Context/AllCoin';
-import {DataContext} from '../../Context/Calculators'
+import {AllCoins} from '../../Context/AllCoin';
+import {DataContext} from '../../Context/Calculators';
+import {Theme} from '../../Context/ThemeContext';
 
-const InputDiv = styled.div`
-    display:${props =>  props.calcInput};
-`
 
-const OutputDiv = styled.div`
-    display: ${props =>  props.calcOutput};
-`
 const Leftsections = () => {
     
 // States
     const coins = useContext(AllCoins);
-
-
+    const {theme} = useContext(Theme)
     const {calcState , calcDispatch} = useContext(DataContext)
 
 
@@ -55,32 +50,38 @@ const Leftsections = () => {
             const result = "Please Enter Datas ..."
             calcDispatch({type : "CALCULATE" , calculate : result})
         }
-
-        console.log(calcState.calculate);
     }
 
     return (
-                    <div className={styles.container}>
-                        <div className={styles.manage}>
-                            <input className={styles.crypto} onChange={inputSearchHandler} value={calcState.inputCoin}  placeholder="search input Coins ..."/>
-                                <InputDiv calcInput={calcState.inputDisplayed} className={styles.searchlist}>
+                    <div className={`left-calculator-container`}>
+                        <div className={`calculator-manage ${theme.theme}`}>
+                            <input onChange={inputSearchHandler} value={calcState.inputCoin}  placeholder="search input Coins ..."/>
+                                <InputDiv calcInput={calcState.inputDisplayed} className={`searchlist`}>
                                     {
                                         searchedCoin.length < 20 && searchedCoin.map( coin =>
                                             <Input key={coin.market_cap_rank} name={coin.name} price={coin.current_price}/>)
                                         }
                                 </InputDiv>
-                            <input className={styles.number} onChange={numberHandler} type="number" placeholder="Number??" / >
-                            <input className={styles.Output} onChange={outputSearchHandler} value={calcState.outputCoin} placeholder="Exchange to ..." / >
-                                <OutputDiv calcOutput={calcState.outputDisplayed} className={styles.searchlist}>
+                            <input onChange={numberHandler} type="number" placeholder="Number??" / >
+                            <input onChange={outputSearchHandler} value={calcState.outputCoin} placeholder="Exchange to ..." / >
+                                <OutputDiv calcOutput={calcState.outputDisplayed} className={`searchlist`}>
                                 {
                                     searchedExchangeCoin.length < 20 &&
                                     searchedExchangeCoin.map( coin => <Output key={coin.market_cap_rank} name={coin.name} price={coin.current_price} symbol={coin.symbol}/>)
                                 }
                                 </OutputDiv>
-                            <button onClick={calcHandler} className={styles.btn}>Change</button>
+                            <button onClick={calcHandler} className={`calculator-button`}>Change</button>
                         </div>
                     </div>
     );
 };
+
+const InputDiv = styled.div`
+    display:${props =>  props.calcInput};
+`
+
+const OutputDiv = styled.div`
+    display: ${props =>  props.calcOutput};
+`
 
 export default Leftsections;

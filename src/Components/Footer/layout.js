@@ -1,55 +1,47 @@
-import React from 'react';
-import styles from './layout.module.css';
-import styled from 'styled-components';
+import React,{useContext} from 'react';
+// Style
+import '../../assets/scss/style.scss';
 
+// Context
+import { Theme } from '../../Context/ThemeContext';
 
-const layout = () => {
+const Layout = () => {
+
+    const {theme} = useContext(Theme)
     return (
-        <div className={styles.container}>
-            <DivContainer>
-                <MainContainer>
+        <div className={`footer-container ${theme.theme}`}>
+            <div className={`footer-main-container`}>
+                <div className='footer-space-manager'>
                     <div>
-                        <ul>
-                            <li>Contact us</li>
+                        <ul className={`footer-list ${theme.theme}`}>
+                            <li className={`footer-title`}>Contact us</li>
                             <li>Email</li>
                             <li>WhatsUp</li>
                         </ul>
                     </div>
                     <div>
-                        <ul>
-                            <li>Social Media</li>
+                        <ul className={`footer-list ${theme.theme}`}>
+                            <li className={`footer-title`}>Social Media</li>
                             <li>Telegram</li>
                             <li>Instagram</li>
                             <li>Twitter</li>
                         </ul>
                     </div>
                     <div>
-                        <ul>
-                            <li>recently News</li>
+                        <ul className={`footer-list ${theme.theme}`}>
+                            <li className={`footer-title`}>recently News</li>
                             <li>Bitcon</li>
                             <li>Ethereum</li>
                             <li>BNB</li>
                         </ul>
                     </div>
-                </MainContainer>
-                <div>
-                    <h3>© Copyright 2022 by Refsnes Data. All Rights digitalCoin is Powered by Payam</h3>
+                </div>  
+                <div className={`copyright-text ${theme.theme}`}>
+                    <p>Copyright ©  2021-2022 Payam Mohtashami. All rights reserved.</p>
                 </div>
-            </DivContainer>
+            </div>
         </div>
     );
 };
-const DivContainer = styled.div`
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-`
-const MainContainer = styled.div`
-    display: flex;
-    width: 60%;
-    justify-content: space-between;
 
-`
-export default layout;
+export default Layout;

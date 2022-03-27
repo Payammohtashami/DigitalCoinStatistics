@@ -2,7 +2,6 @@ import React,{useContext} from 'react';
 import {Link, useParams} from 'react-router-dom';
 
 // style
-import styled from 'styled-components';
 import '../../assets/scss/style.scss';
 
 // Components

@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from '../../assets/css/layout.module.css'
+import React,{useContext} from 'react';
+import '../../assets/scss/style.scss'
 
 // Components 
 import Header from '../Head/index'
@@ -7,9 +7,16 @@ import Cards from './cards';
 import CoinsList from './coinsList';
 import ChangePage from './ChangePage';
 
-const layout = () => {
+// Context
+import { Theme } from '../../Context/ThemeContext';
+
+
+const Layout = () => {
+
+    const {theme} = useContext(Theme)
+
     return (
-        <div className={styles.container}>
+        <div className={`container ${theme.theme}`}>
             <Header />
             <Cards />
             <CoinsList />
@@ -18,4 +25,4 @@ const layout = () => {
     );
 };
 
-export default layout;
+export default Layout;

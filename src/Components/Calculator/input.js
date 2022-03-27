@@ -1,11 +1,13 @@
 import React,{useContext} from 'react';
-import styles from './assets/css/search.module.css';
 
-import { DataContext } from '../../Context/Calculators';
+// Style
 
+// Context
+import {DataContext} from '../../Context/Calculators';
+import {Theme} from '../../Context/ThemeContext';
 const Input = ({name , price}) => {
     const {calcDispatch} = useContext(DataContext);
-
+    const {theme} = useContext(Theme)
 
     const setHandler = () => {
         calcDispatch({type : "INPUT_DISPLAY" , inputDisplayed : "none"});
@@ -15,7 +17,7 @@ const Input = ({name , price}) => {
     }
 
     return (
-            <div className={styles.cointainer}>
+            <div>
                 <button onClick={setHandler}>{name}</button>
             </div>
     );

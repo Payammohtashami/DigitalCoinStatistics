@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import '../../assets/scss/style.scss';
 
 // Context
-import { Theme } from '../../Context/ThemeContext';
+import {Theme} from '../../Context/ThemeContext';
 
 const News = ({par1,id, image ,title}) => {
     const {theme} = useContext(Theme)
@@ -13,14 +13,16 @@ const News = ({par1,id, image ,title}) => {
         <div className={`news-container`}>
             <div className={`news-box ${theme.theme}`}>
                 <div className={`news-description`}>
-                    <img src={image} alt="NewsImage"/>
-                    <div className={`news-title ${theme.theme}`}>
+                    <div>
+                        <img src={image} alt="NewsImage"/>
+                    </div>
+                    <div className={`news-page-title ${theme.theme}`}>
                         <h3>{title}</h3>
                         <p>{par1}</p>
-                        <div>
-                            <Link to={`${id}`}> Read More ... </Link>
-                        </div>
                     </div>
+                </div>
+                <div className='readmore-button'>
+                    <Link to={`${id}`}> Read More ... </Link>
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@ import '../../assets/scss/style.scss';
 
 // Context
 import { SearchContext } from '.';
-import { Theme } from '../../Context/ThemeContext';
+import {Theme} from '../../Context/ThemeContext';
 
 const Search = ({name , image , marketCapRank}) => {
     const {theme} = useContext(Theme)
@@ -15,9 +15,9 @@ const Search = ({name , image , marketCapRank}) => {
         setSearch("")
     }
     return (
-        <div className={`search-lists ${theme.theme}`}>
+        <div className={`search-lists-style ${theme.theme}`}>
             <div className={`searchedlist-container`}>
-                <Link className="search-title" onClick={clearHandler} to={`/detail/${marketCapRank}`}>
+                <Link className="searched-title" onClick={clearHandler} to={`/detail/${marketCapRank}`}>
                 <img src={image} alt="name" />
                 <p>{name}</p>
                 </Link>

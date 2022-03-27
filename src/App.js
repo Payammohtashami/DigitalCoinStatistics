@@ -11,7 +11,7 @@ import Sidebar from './Components/Sidebar/index';
 import Body from './Components/Body/layout';
 import Detail from './Components/DetailPage/layout';
 import ExChange from './Components//Exchange/index'; 
-import Calculator from './Components/Calculator/layout';
+import Calculator from './Components/Calculator/index';
 import Setting from './Components//Setting/layout';
 import Footer from './Components/Footer/layout';
 import News from './Components/News/index'

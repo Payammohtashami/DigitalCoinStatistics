@@ -1,21 +1,24 @@
 import React , {useContext} from 'react';
 import {useParams } from 'react-router-dom';
-import styles from '../../assets/css/layout.module.css';
+import '../../assets/scss/style.scss';
 
 // Context
-import { AllCoins } from '../../Context/AllCoin'
+import {AllCoins} from '../../Context/AllCoin'
+import {Theme} from '../../Context/ThemeContext';
 
 // Components
+import Loading from '../LoadingPage/index';
 import Header from '../Head/index';
 import Detail from'./Detial';
 
 const Layout = () => {
+    const {theme} = useContext(Theme)
     const params = useParams();
     const id = params.id;
     const CoinsContext = useContext(AllCoins);
     const Coin = CoinsContext[id - 1];
     return (
-        <div className={styles.container}>
+        <div className={`container ${theme.theme}`}>
             <Header />
             {
                 Coin ?
@@ -37,7 +40,7 @@ const Layout = () => {
                     weekChange={Coin.sparkline_in_7d.price}
                     />
                 :
-                <h1>Loading</h1>
+                <Loading />
                 }
         </div>
     );
